@@ -35,7 +35,7 @@ namespace BOF_app.Controllers
             }
 
             var result = await _service.GetBanknotesAsync(startDate, endDate);
-            return Ok(new {quantity = result.Quantity, amount = result.Amount, startTime = result.startTime, endTime = result.endTime});
+            return Ok(result);
         }
     }
 }

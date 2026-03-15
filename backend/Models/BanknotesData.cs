@@ -1,10 +1,18 @@
 namespace BOF_app.Models
 {
-    public class BanknotesData
+    public sealed class BanknotesData
     {
-        public DateTime startTime { get; set; }
-        public DateTime endTime { get; set; }
-        public int Quantity { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public long QuantityChange { get; set; }
+        public decimal AmountChange { get; set; }
+        public List<BanknoteBreakdown> Breakdown { get; set; } = [];
+    }
+
+    public sealed class BanknoteBreakdown
+    {
+        public int Denomination { get; set; }
+        public long Quantity { get; set; }
         public decimal Amount { get; set; }
     }
 }
