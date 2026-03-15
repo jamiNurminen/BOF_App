@@ -4,6 +4,6 @@ namespace BOF_app.Services
 {
     public interface IBanknotesService
     {
-        Task<BanknotesData> GetBanknotesAsync(DateTime startDate, DateTime endDate, string[]? currencies = null);
+        Task<BanknotesData> GetBanknotesAsync(DateTime startDate, DateTime endDate);
     }
 }

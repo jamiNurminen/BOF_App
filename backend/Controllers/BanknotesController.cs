@@ -17,12 +17,25 @@ namespace BOF_app.Controllers
         [HttpGet]
         public async Task<IActionResult> GetBanknotes(
             [FromQuery] DateTime startDate,
-            [FromQuery] DateTime endDate,
-            [FromQuery] string[]? currencies = null)
+            [FromQuery] DateTime endDate)
         {
-            var result = await _service.GetBanknotesAsync(startDate, endDate, currencies);
-            return Ok(new {quantity = result.Quantity, amount = result.Amount, currencies = result.Conversions});
-        }
+            if (startDate == default || endDate == default)
+            {
+                return BadRequest("Both startDate and endDate are required.");
+            }
 
+            if (startDate > endDate)
+            {
+                return BadRequest("Start date must be before end date.");
+            }
+
+            if (endDate > DateTime.Now)
+            {
+                return BadRequest("End date cannot be in the future.");
+            }
+
+            var result = await _service.GetBanknotesAsync(startDate, endDate);
+            return Ok(new {quantity = result.Quantity, amount = result.Amount, startTime = result.startTime, endTime = result.endTime});
+        }
     }
 }

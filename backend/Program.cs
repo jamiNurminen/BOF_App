@@ -8,6 +8,8 @@ builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services.AddScoped<IBanknotesService, BanknotesService>();
+builder.Services.AddScoped<IExchangeRatesService, ExchangeRatesService>();
+builder.Services.AddHttpClient<IExchangeRatesService, ExchangeRatesService>();
 
 var app = builder.Build();
 Console.WriteLine(DateTime.Now.ToString());
