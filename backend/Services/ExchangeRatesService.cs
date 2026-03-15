@@ -10,6 +10,7 @@ using Microsoft.VisualBasic;
 using System.Data.SqlTypes;
 using System.Linq.Expressions;
 using System.Runtime;
+using System.Globalization;
 
 namespace BOF_app.Services
 {
@@ -17,6 +18,7 @@ namespace BOF_app.Services
     {
         private readonly HttpClient _httpClient;
         private const string BaseUrl = "https://api.boffsaopendata.fi/referencerates/v2/api/V2";
+        private static readonly CultureInfo BofDecimalCulture = CultureInfo.GetCultureInfo("fi-FI");
 
         public ExchangeRatesService(HttpClient httpClient)
         {
@@ -50,7 +52,7 @@ namespace BOF_app.Services
                 var exchangeRates = bofRates.Select(rate => 
                 {
                     Console.WriteLine("Rate: " + rate);
-                    var rate_value = Convert.ToDecimal(rate.ExchangeRates.FirstOrDefault()?.Value ?? "0");
+                    var rate_value = ParseExchangeRateValue(rate.ExchangeRates[0].Value);
             
                     return new CurrencyConversion
                     {
@@ -130,6 +132,21 @@ namespace BOF_app.Services
             {
                throw new Exception($"An unexpected error occurred: {ex.Message}", ex); 
             }
+        }
+
+        private static decimal ParseExchangeRateValue(string rawValue)
+        {
+            if (decimal.TryParse(rawValue, NumberStyles.Number, BofDecimalCulture, out var parsedValue))
+            {
+                return parsedValue;
+            }
+
+            if (decimal.TryParse(rawValue, NumberStyles.Number, CultureInfo.InvariantCulture, out parsedValue))
+            {
+                return parsedValue;
+            }
+
+            throw new FormatException($"Unable to parse exchange rate value '{rawValue}'.");
         }
     }
 }
