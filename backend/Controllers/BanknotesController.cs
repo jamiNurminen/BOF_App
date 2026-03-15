@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using BOF_app.Services;
 
 namespace BOF_app.Controllers
 {
@@ -6,15 +7,21 @@ namespace BOF_app.Controllers
     [Route("api/[controller]")]
     public class BanknotesController : ControllerBase
     {
+        private readonly IBanknotesService _service;
+
+        public BanknotesController(IBanknotesService service)
+        {
+            _service = service;
+        }
+
         [HttpGet]
-        public IActionResult GetBanknotes(
+        public async Task<IActionResult> GetBanknotes(
             [FromQuery] DateTime startDate,
             [FromQuery] DateTime endDate,
             [FromQuery] string[]? currencies = null)
         {
-            var selectedCurrencies = currencies ?? Array.Empty<string>();
-
-            return Ok(new {quantity = 100, amount = 950.25, currencies = selectedCurrencies});
+            var result = await _service.GetBanknotesAsync(startDate, endDate, currencies);
+            return Ok(new {quantity = result.Quantity, amount = result.Amount, currencies = result.Conversions});
         }
 
     }
