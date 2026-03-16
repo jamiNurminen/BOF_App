@@ -1,8 +1,9 @@
 using BOF_app.Services;
 
-var MyAllowSpecificOrgins = "_myAllowSpecificOrginiPolicy";
+var myAllowSpecificOrigins = "_myAllowSpecificOriginPolicy";
 
 var builder = WebApplication.CreateBuilder(args);
+var isRunningInContainer = builder.Configuration.GetValue("DOTNET_RUNNING_IN_CONTAINER", false);
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -14,7 +15,7 @@ builder.Services.AddScoped<IExchangeRatesService, ExchangeRatesService>();
 builder.Services.AddHttpClient<IExchangeRatesService, ExchangeRatesService>();
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(name: MyAllowSpecificOrgins,
+    options.AddPolicy(name: myAllowSpecificOrigins,
                       policy =>
                       {
                           policy.WithOrigins("http://localhost:5173")
@@ -34,9 +35,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+if (!isRunningInContainer)
+{
+    app.UseHttpsRedirection();
+}
 
-app.UseCors(MyAllowSpecificOrgins);
+app.UseCors(myAllowSpecificOrigins);
 
 app.MapControllers();
 

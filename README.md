@@ -37,6 +37,13 @@ dotnet run
 ```
 Backend käynnistyy oletuksena osoitteeseen `http://localhost:5040`.
 
+#### 1b) Backend Dockerilla
+```bash
+docker build -t bof-backend:latest ./backend
+docker run --rm -p 5040:8080 bof-backend:latest
+```
+Backend on käytettävissä osoitteessa `http://localhost:5040`.
+
 #### 2) Frontend
 ```bash
 cd frontend
@@ -109,6 +116,13 @@ dotnet restore
 dotnet run
 ```
 Backend runs by default at `http://localhost:5040`.
+
+#### 1b) Backend with Docker
+```bash
+docker build -t bof-backend:latest ./backend
+docker run --rm -p 5040:8080 bof-backend:latest
+```
+Backend is available at `http://localhost:5040`.
 
 #### 2) Frontend
 ```bash
