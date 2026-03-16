@@ -57,32 +57,32 @@ export const inputsCustomizations = {
             },
             style: {
               color: 'white',
-              backgroundColor: gray[900],
-              backgroundImage: `linear-gradient(to bottom, ${gray[700]}, ${gray[800]})`,
-              boxShadow: `inset 0 1px 0 ${gray[600]}, inset 0 -1px 0 1px hsl(220, 0%, 0%)`,
-              border: `1px solid ${gray[700]}`,
+              backgroundColor: brand[900],
+              backgroundImage: `linear-gradient(to bottom, ${brand[700]}, ${brand[800]})`,
+              boxShadow: `inset 0 1px 0 ${brand[600]}, inset 0 -1px 0 1px hsl(220, 0%, 0%)`,
+              border: `1px solid ${brand[700]}`,
               '&:hover': {
                 backgroundImage: 'none',
-                backgroundColor: gray[700],
+                backgroundColor: brand[700],
                 boxShadow: 'none',
               },
               '&:active': {
                 backgroundColor: gray[800],
               },
               ...theme.applyStyles('dark', {
-                color: 'black',
-                backgroundColor: gray[50],
-                backgroundImage: `linear-gradient(to bottom, ${gray[100]}, ${gray[50]})`,
-                boxShadow: 'inset 0 -1px 0  hsl(220, 30%, 80%)',
-                border: `1px solid ${gray[50]}`,
-                '&:hover': {
-                  backgroundImage: 'none',
-                  backgroundColor: gray[300],
-                  boxShadow: 'none',
-                },
-                '&:active': {
-                  backgroundColor: gray[400],
-                },
+              color: 'white',
+              backgroundColor: brand[900],
+              backgroundImage: `linear-gradient(to bottom, ${brand[700]}, ${brand[800]})`,
+              boxShadow: `inset 0 1px 0 ${brand[600]}, inset 0 -1px 0 1px hsl(220, 0%, 0%)`,
+              border: `1px solid ${brand[700]}`,
+              '&:hover': {
+                backgroundImage: 'none',
+                backgroundColor: brand[700],
+                boxShadow: 'none',
+              },
+              '&:active': {
+                backgroundColor: gray[800],
+              },
               }),
             },
           },
@@ -239,7 +239,7 @@ export const inputsCustomizations = {
           backgroundColor: gray[200],
         },
         ...theme.applyStyles('dark', {
-          backgroundColor: gray[800],
+          backgroundColor: brand[800],
           borderColor: gray[700],
           '&:hover': {
             backgroundColor: gray[900],

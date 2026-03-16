@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import SignIn from './SignIn';
+import BofApp from './BofApp.js'
 import { createTheme } from '@mui/material/styles';
 import { useState } from 'react';
 
@@ -18,7 +18,7 @@ const darkTheme = createTheme({
 
 function App() {
   return (
-    <SignIn />
+    <BofApp />
   );
 }
 
