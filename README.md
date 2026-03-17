@@ -12,7 +12,7 @@ BOF App hakee Suomen Pankin avoimesta rajapinnasta setelidataa valitulta aikavä
 ### Keskeiset ominaisuudet
 - Aikavälin valinta (`Alkupäivä` / `Loppupäivä`)
 - Setelimuutosten yhteenveto kortilla
-- Näytä/piilota erittely (`Show breakdown` / `Hide breakdown`)
+- Näytä/piilota erittely (`Näytä erittely` / `Piilota erittely`)
 - Väritetty arvoesitys:
 	- negatiivinen = punainen
 	- positiivinen = vihreä
