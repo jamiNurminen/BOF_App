@@ -110,16 +110,13 @@ export default function BofApp(props) {
   }, []);
 
   const handleSubmit = async () => {
-    console.log('Start Date:', startDate);
-    console.log('End Date:', endDate);
-
     if (!startDate || !endDate) {
-      console.log('Please select both start and end dates.');
+      alert('Valitse sekä alkupäivä että loppupäivä.');
       return;
     }
 
     if (startDate.isAfter(endDate)) {
-      console.log('Start date must be before end date.');
+      alert('Alkupäivä täytyy olla ennen loppupäivää.');
       return;
     }
 
@@ -164,6 +161,7 @@ export default function BofApp(props) {
   }
 
   const handleCurrencyChange = (event) => {
+    setBanknotesData(null);
     setSelectedCurrency(event.target.value);
   }
 
@@ -200,6 +198,9 @@ export default function BofApp(props) {
             >
               Suomen Pankki - App
             </Typography>
+            <Typography variant="body1" sx={{ mb: 2 }}>
+              Valitse päivämäärä ja halutessasi valuutta, niin näet eurosetelien liikkeellelaskun määrän kyseiselle aikavälille.
+            </Typography>
             <Box spacing={2} sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'nowrap', gap: 5 }}>
               <Box >
                 <Typography component="label" variant="body2" sx={{ display: 'block', mb: 1 }}>
@@ -207,6 +208,7 @@ export default function BofApp(props) {
                 </Typography>
                 <DateTimePicker 
                   value={startDate}
+                  required
                   onChange={(newValue) => setStartDate(newValue)}
                 /> 
               </Box>
@@ -216,6 +218,7 @@ export default function BofApp(props) {
                 </Typography>
                  <DateTimePicker 
                   value={endDate}
+                  required
                   onChange={(newValue) => setEndDate(newValue)}
                 />
               </Box>
@@ -277,7 +280,7 @@ export default function BofApp(props) {
                 sx={{ width: '100%', maxWidth: '900px', p: 3, display: 'flex', flexDirection: 'column', gap: 2 }}
               >
                 <Typography component="h2" variant="h5">
-                  Banknotes Data
+                  Eurosetelien liikkeellelasku 
                 </Typography>
 
                 <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 1.5 }}>
@@ -310,7 +313,7 @@ export default function BofApp(props) {
 
                 <Box>
                   <Button variant="outlined" onClick={() => setShowBreakdown((prev) => !prev)}>
-                    {showBreakdown ? 'Hide breakdown' : 'Show breakdown'}
+                    {showBreakdown ? 'Piilota erittely' : 'Näytä erittely'}
                   </Button>
                 </Box>
 
