@@ -41,7 +41,7 @@ namespace BOF_app.Services
                         var ordered = item.Observations.OrderBy(o => o.Period).ToList(); 
                         if (ordered.Count < 2) continue;
                         
-                        var change = ordered[^1].Value - ordered[0].Value;
+                        var change = ordered[^1].Value + ordered[0].Value;
 
                     if (!byDenomination.TryGetValue(denomination, out var row))
                         row = new BanknoteBreakdown { Denomination = denomination };
