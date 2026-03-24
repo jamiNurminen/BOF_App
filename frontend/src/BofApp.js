@@ -128,8 +128,11 @@ export default function BofApp(props) {
     // Fetch banknotes data for the selected date range
     let responseData;
 
+    const startDateFormatted = startDate.format('M/D/YYYY');
+    const endDateFormatted = endDate.format('M/D/YYYY');
+
     try {
-      responseData = await getBanknotes(startDate.toISOString(), endDate.toISOString());
+      responseData = await getBanknotes(startDateFormatted, endDateFormatted);
       setBanknotesData(responseData);
       setShowBreakdown(false);
     } catch (error) {

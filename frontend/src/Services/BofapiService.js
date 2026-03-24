@@ -8,7 +8,6 @@ import { API_URL } from '../config';
  */
 export const getBanknotes = async (startTime, endTime) => {
   try {
-    console.log(API_URL)
     const response = await fetch(
       `${API_URL}/Banknotes?startDate=${encodeURIComponent(startTime)}&endDate=${encodeURIComponent(endTime)}`
     );
