@@ -120,6 +120,11 @@ export default function BofApp(props) {
       return;
     }
 
+    if (endDate > new Date() || startDate > new Date()) {
+      alert('Päivämäärä ei voi olla tulevaisuudessa.');
+      return;
+    }
+
     // Fetch banknotes data for the selected date range
     let responseData;
 
