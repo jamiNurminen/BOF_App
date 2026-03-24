@@ -39,9 +39,8 @@ namespace BOF_app.Services
                     var (denomination, unit) = ParseSeriesName(item.Name);
 
                         var ordered = item.Observations.OrderBy(o => o.Period).ToList(); 
-                        if (ordered.Count < 2) continue;
                         
-                        var change = ordered[^1].Value + ordered[0].Value;
+                        var change = ordered.Sum(x => x.Value);
 
                     if (!byDenomination.TryGetValue(denomination, out var row))
                         row = new BanknoteBreakdown { Denomination = denomination };
